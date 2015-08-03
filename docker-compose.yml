@@ -1,0 +1,8 @@
+
+shadowsocks:
+  build: ./shadowsocks
+  ports:
+    - "9388:9388"
+  environment:
+    - PASSWORD=xiaoming
+  restart: always
