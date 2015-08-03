@@ -6,3 +6,14 @@ shadowsocks:
   environment:
     - PASSWORD=xiaoming
   restart: always
+
+pptp:
+  build: ./pptp
+  ports:
+    - "1723:1723"
+  volumes:
+    - ./pptp/conf/pptpd.conf:/etc/pptpd.conf
+    - ./pptp/conf/pptpd-options:/etc/ppp/pptpd-options
+    - ./pptp/conf/chap-secrets:/etc/ppp/chap-secrets
+  privileged: true
+  restart: always
