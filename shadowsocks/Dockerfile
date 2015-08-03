@@ -2,7 +2,7 @@ FROM ubuntu:15.10
 
 MAINTAINER HyanCat <hyancat@live.cn>
 
-ADD sources.list    /etc/apt/sources.list
+# ADD sources.list    /etc/apt/sources.list
 
 RUN apt-get update && \
     apt-get install -y python-pip && \
