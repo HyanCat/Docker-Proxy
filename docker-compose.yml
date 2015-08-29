@@ -5,6 +5,8 @@ shadowsocks:
     - "9388:9388"
   environment:
     - PASSWORD=xiaoming
+  volumes:
+    - ./shadowsocks/log:/root/log
   restart: always
 
 pptp:

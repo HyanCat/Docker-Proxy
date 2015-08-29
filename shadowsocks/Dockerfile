@@ -12,6 +12,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+RUN mkdir /root/log
+
 ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 9388
 ENV PASSWORD	secret
@@ -27,4 +29,5 @@ CMD ssserver -s $SERVER_ADDR \
              -m $METHOD \
              -t $TIMEOUT \
              --fast-open \
-             --workers $WORKERS
+             --workers $WORKERS \
+             >> /root/log/shadowsocks.log 2>&1
