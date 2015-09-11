@@ -14,20 +14,7 @@ RUN apt-get update && \
 
 RUN mkdir /root/log
 
-ENV SERVER_ADDR 0.0.0.0
-ENV SERVER_PORT 9388
-ENV PASSWORD	secret
-ENV METHOD      aes-256-cfb
-ENV TIMEOUT     300
-ENV WORKERS     10
+EXPOSE 9388
 
-EXPOSE $SERVER_PORT
+CMD ssserver -c /etc/shadowsocks.json >> /root/log/shadowsocks.log 2>&1
 
-CMD ssserver -s $SERVER_ADDR \
-             -p $SERVER_PORT \
-             -k ${PASSWORD:-$(hostname)} \
-             -m $METHOD \
-             -t $TIMEOUT \
-             --fast-open \
-             --workers $WORKERS \
-             >> /root/log/shadowsocks.log 2>&1

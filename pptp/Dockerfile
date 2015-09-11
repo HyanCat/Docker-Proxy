@@ -8,10 +8,6 @@ RUN apt-get update \
     && apt-get install -y iptables pptpd \
     && rm -rf /var/lib/apt/lists/*
 
-COPY conf/pptpd.conf    /etc/
-COPY conf/chap-secrets  /etc/ppp/
-COPY conf/pptpd-options /etc/ppp/
-
 EXPOSE 1723
 
 CMD iptables -t nat -A POSTROUTING -s 10.99.99.0/24 -o eth0 -j MASQUERADE \

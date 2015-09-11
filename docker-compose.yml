@@ -3,9 +3,8 @@ shadowsocks:
   build: ./shadowsocks
   ports:
     - "9388:9388"
-  environment:
-    - PASSWORD=xiaoming
   volumes:
+    - ./shadowsocks/conf/shadowsocks.json:/etc/shadowsocks.json
     - ./shadowsocks/log:/root/log
   restart: always
 
