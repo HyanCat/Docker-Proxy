@@ -1,4 +1,4 @@
-FROM ubuntu:15.10
+FROM ubuntu:latest
 
 MAINTAINER HyanCat <hyancat@live.cn>
 
@@ -8,8 +8,10 @@ RUN apt-get update \
     && apt-get install -y iptables pptpd \
     && rm -rf /var/lib/apt/lists/*
 
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod 0700 /entrypoint.sh
+
 EXPOSE 1723
 
-CMD iptables -t nat -A POSTROUTING -s 10.99.99.0/24 -o eth0 -j MASQUERADE \
-    && iptables -A FORWARD -s 10.99.99.0/24 -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -j TCPMSS --set-mss 1356 \
-    && pptpd --fg
+ENTRYPOINT ["/entrypoint.sh"]
+CMD pptpd --fg
