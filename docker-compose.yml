@@ -18,3 +18,4 @@ pptp:
     - ./pptp/conf/chap-secrets:/etc/ppp/chap-secrets
   privileged: true
   restart: always
+  net: host
